@@ -1,0 +1,109 @@
+heat_template_version: ocata
+
+description: >
+  Configuration details for MidoNet service using composable roles
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  MemHasInsights:
+    default: false
+    description: 'Set to true if using insights'
+    type: boolean
+  MemInsightsCalliopePort:
+    default: "8088"
+    description: 'Port on which Calliope will listen'
+    type: string
+  TunnelZoneType:
+    label: Type of the Tunnel
+    description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
+    type: string
+    default: 'gre'
+  UplinkType:
+    default: "static"
+    description: 'Type of the uplink. Can be set to `static` or `bgp`'
+    type: string
+  MidonetVersion:
+    default: "oss"
+    description: 'Whether we use the `oss` version or the `mem` version'
+    type: string
+  NetworkConfigRouterName:
+    default: "edge-router"
+    description: "Name of the edge router that will be created"
+    type: string
+  NetworkConfigFipCidr:
+    description: CIDR of the floating IP network used by the VMs
+                 (e.g. 10.0.0.0/16).
+    type: string
+  NetworkConfigPortName:
+    description: Name of the edge router port that is going to be configured for
+                 this network.
+    type: string
+    default: "edge-port"
+  NetworkConfigSubnetName:
+    default: "edge-subnet"
+    description: "Subnet name that will be created for the above network"
+    type: string
+  NetworkConfigNetworkName:
+    default: "edge-net"
+    description: "Name that will be used by the external (floating IP) network"
+    type: string
+  NetworkConfigFipGatewayIp:
+    description: IP on the floating IP range that will be assigned to
+                 the edge router (e.g. 10.0.0.1).
+    type: string
+  NetworkConfigFipAllocationPools:
+    description: Floating IP range that can be assigned to VMs. Must be
+                 in the format ["start=10.0.0.20,end=10.0.255.254"].
+    type: string
+  NetworkConfigPortPhysicalCidr:
+    description: Network on which the physical interface that is bound to
+                 the edge router port is (e.g. 172.19.0.2/26).
+    type: string
+  NetworkConfigPortPhysicalIp:
+    description: IP address that the physical interface has assigned.
+                 (e.g. 50.1.40.12)
+    type: string
+
+outputs:
+  role_data:
+    description: Role data for the MidoNet base service
+    value:
+      service_name: midonet_base
+      config_settings:
+        tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
+        tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
+        tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
+        tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
+        tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsCalliopePort}
+        midonet::network_creation::subnet_cidr: {get_param: NetworkConfigFipCidr}
+        midonet::network_creation::edge_router_name: {get_param: NetworkConfigRouterName}
+        midonet::network_creation::port_name: {get_param: NetworkConfigPortName}
+        midonet::network_creation::edge_subnet_name: {get_param: NetworkConfigSubnetName}
+        midonet::network_creation::edge_network_name: {get_param: NetworkConfigNetworkName}
+        midonet::network_creation::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
+        midonet::network_creation::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
+        midonet::network_creation::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
+        midonet::network_creation::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
+        tripleo::network::midonet::gateway::static_edge_router: {get_param: NetworkConfigRouterName}
+        tripleo::network::midonet::gateway::static_fip: {get_param: NetworkConfigFipCidr}
+        tripleo::network::midonet::gateway::static_port_name: {get_param: NetworkConfigPortName}
+        tripleo::network::midonet::gateway::static_subnet_name: {get_param: NetworkConfigSubnetName}
+        tripleo::network::midonet::gateway::static_network_name: {get_param: NetworkConfigNetworkName}
+        tripleo::network::midonet::gateway::static_gateway_ip: {get_param: NetworkConfigFipGatewayIp}
+        tripleo::network::midonet::gateway::static_allocation_pools: {get_param: NetworkConfigFipAllocationPools}
+        tripleo::network::midonet::gateway::static_veth_network: {get_param: NetworkConfigPortPhysicalCidr}
+        tripleo::network::midonet::gateway::static_veth0_ip: {get_param: NetworkConfigPortPhysicalIp}

@@ -1,0 +1,122 @@
+heat_template_version: ocata
+
+description: >
+  MidoNet gateway configuration using Puppet (both fake static uplink and
+  BGP modes are supported)
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+        Static uplink settings
+
+
+  #
+  # Fake static uplink settings
+  #
+
+  StaticUplinkNetworkInterface:
+    default: "br-ex"
+    description: When configuring a fake static uplink a Linux bridge is
+                 created in the underlay. This variable holds the name that
+                 will be given to this interface.
+    type: string
+  StaticUplinkVeth1Ip:
+    default: "172.19.0.2"
+    description: IP address the second virtual interface pair. This IP address
+                 can be made up but it must be in the same network as
+                 NetworkConfigPortPhysicalCidr.
+    type: string
+  StaticUplinkScriptDirectory:
+    default: "/tmp"
+    description: Directory where the script that is used to set up the fake
+                 static uplink will be placed (no trailing slash).
+    type: string
+  StaticUplinkScriptName:
+    default: "create_fake_uplink_l2.sh"
+    description: Name for the script that sets up the static uplink (no need
+                 to change this variable).
+    type: string
+  StaticUplinkScriptEnsure:
+    default: 'present'
+    description: Whether you want the script in your system or not
+                 (_MUST_ be present on the 1st run).
+    type: string
+
+
+  #
+  # BGP uplink settings
+  #
+
+  BgpUplinkLocalASNumber:
+    description: 'Local AS number'
+    type: string
+    default: "65497"
+  BgpUplinkAdvertisedNetworks:
+    description: Floating IP networks that the gateway is going to advertise
+                 (e.g. ["10.0.0.0/16"]).
+    type: string
+  BgpUplinkNeighborsIps:
+    description: Array containing the IPs of the BGP neighbors (length must
+                 be the same that in BgpUplinkNeighborsAsns and
+                 BgpUplinkNeighborsNetworks).
+    type: string
+  BgpUplinkNeighborsAsns:
+    description: Array containing the ASNs of the BGP neighbors (length must
+                 be the same that in BgpUplinkNeighborsIps and
+                 BgpUplinkNeighborsNetworks).
+    type: string
+  BgpUplinkNeighborsNetworks:
+    description: Array containing the CIDR of the networks in which the
+                 BGP neighbors are (length must be the same that in
+                 BgpUplinkNeighborsIps and BgpUplinkNeighborsNetworks).
+     type: string
+  AdminPassword:
+    description: The password for the keystone admin account
+                 (used to query neutron).
+    type: string
+    hidden: true
+
+resources:
+  MidonetBase:
+    type: ./midonet-base.yaml
+    properties:
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      EndpointMap: {get_param: EndpointMap}
+
+outputs:
+  role_data:
+    description: Role data for the MidoNet Gateway service
+    value:
+      service_name: midonet_gateway
+      config_settings:
+        map_merge:
+          - get_attr: [MidonetBase, role_data, config_settings]
+          - tripleo::network::midonet::gateway::static_nic: {get_param: StaticUplinkNetworkInterface}
+            tripleo::network::midonet::gateway::static_veth1_ip: {get_param: StaticUplinkVeth1Ip}
+            tripleo::network::midonet::gateway::static_scripts_dir: {get_param: StaticUplinkScriptDirectory}
+            tripleo::network::midonet::gateway::static_uplink_script: {get_param: StaticUplinkScriptName}
+            tripleo::network::midonet::gateway::static_ensure_scripts: {get_param: StaticUplinkScriptEnsure}
+            tripleo::network::midonet::gateway::bgp_local_as_number: {get_param: BgpUplinkLocalASNumber}
+            tripleo::network::midonet::gateway::bgp_advertised_networks: {get_param: BgpUplinkAdvertisedNetworks}
+            tripleo::network::midonet::gateway::bgp_neighbors_ips: {get_param: BgpUplinkNeighborsIps}
+            tripleo::network::midonet::gateway::bgp_neighbors_asns: {get_param: BgpUplinkNeighborsAsns}
+            tripleo::network::midonet::gateway::bgp_neighbors_nets: {get_param: BgpUplinkNeighborsNetworks}
+            tripleo::network::midonet::gateway::midonet_cluster_vip: '"%{hiera(''midonet_cluster_vip'')}"'
+            tripleo::network::midonet::gateway::username: 'admin'
+            tripleo::network::midonet::gateway::password: {get_param: AdminPassword}
+            tripleo::network::midonet::gateway::tenant: 'service'
+      step_config: |
+        include ::tripleo::network::midonet::gateway

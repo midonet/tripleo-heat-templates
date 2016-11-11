@@ -1,0 +1,58 @@
+heat_template_version: ocata
+
+description: >
+  MidoNet Cluster (formerly known as MidoNet API) service deployment using Puppet
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  MidonetClusterUsername:
+    default: "admin"
+    description: Keystone user to be used for authentication (must have
+                 the admin role)
+    type: string
+  MidonetClusterPassword:
+    description: The password for the keystone user that will be used by
+                 the MidoNet Cluster.
+    type: string
+    hidden: true
+  MidonetClusterTenant:
+    default: "service"
+    description: Keystone tenant to be used for authentication
+    type: string
+
+resources:
+  MidonetBase:
+    type: ./midonet-base.yaml
+    properties:
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      EndpointMap: {get_param: EndpointMap}
+
+outputs:
+  role_data:
+    description: Service MidoNet Cluster using composable services
+    value:
+      service_name: midonet_cluster
+      config_settings:
+        map_merge:
+          - get_attr: [MidonetBase, role_data, config_settings]
+          - tripleo::network::midonet::cluster::nsdb_nodes: '"%{hiera(''midonet_nsdb_node_ips'')}"'
+            tripleo::network::midonet::cluster::keystone_host: '"%{hiera(''keystone_public_api_vip'')}"'
+            tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
+            tripleo::network::midonet::cluster::keystone_user_password: {get_param: MidonetClusterPassword}
+            tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetClusterTenant}
+      step_config: |
+        include ::tripleo::network::midonet::cluster

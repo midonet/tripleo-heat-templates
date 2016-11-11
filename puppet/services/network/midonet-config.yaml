@@ -1,0 +1,37 @@
+heat_template_version: ocata
+
+description: >
+  Initial network creation using Puppet. It creates and configures the edge
+  router, as well as an initial floating IP network.
+
+parameters:
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  NetworkConfigPortPhysicalName:
+    description: Physical interface to which the port will be bound to. It has
+                 to be in the old-fashioned form (i.e. eth0 instead of enp0s3).
+                 If the name is in the new standard (e.g. enp0s3) the program
+                 `biosdevname` will be used to resolve to the old fashion name.
+    type: string
+
+outputs:
+  role_data:
+    description: Role data for the MidoNet initial network configuration service
+    value:
+      service_name: midonet_config
+      config_settings:
+        midonet::network_creation::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
+      step_config: |
+        include ::tripleo::network::midonet::config

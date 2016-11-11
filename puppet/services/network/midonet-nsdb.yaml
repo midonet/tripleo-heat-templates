@@ -1,7 +1,7 @@
 heat_template_version: 2016-04-08
 
 description: >
-  OpenStack Neutron Compute Midonet plugin
+  MidoNet NSDB (Zookeeper & Cassandra) service deployment using Puppet
 
 parameters:
   ServiceNetMap:
@@ -18,12 +18,17 @@ parameters:
     description: Mapping of service endpoint -> protocol. Typically set
                  via parameter_defaults in the resource registry.
     type: json
+  MidonetNsdbZookeeperDir:
+    default: "/etc/zookeeper"
+    description: Zookeeper configuration directory
+    type: string
 
 outputs:
   role_data:
-    description: Role data for the Neutron Compute Plumgrid plugin
+    description: Role data for the MidoNet NSDB service
     value:
-      service_name: neutron_compute_plugin_midonet
+      service_name: midonet_nsdb
       config_settings:
+        tripleo::network::midonet::nsdb::zookeeper_cfg_dir: {get_param: MidonetNsdbZookeeperDir}
       step_config: |
-        include ::tripleo::profile::base::neutron::agents::midonet
+        include ::tripleo::network::midonet::nsdb
