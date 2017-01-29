@@ -1,4 +1,4 @@
-heat_template_version: ocata
+heat_template_version: 2015-04-30
 
 description: >
   Initial network creation using Puppet. It creates and configures the edge

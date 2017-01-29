@@ -1,4 +1,4 @@
-heat_template_version: ocata
+heat_template_version: 2015-04-30
 
 description: >
   MidoNet Cluster (formerly known as MidoNet API) service deployment using Puppet
