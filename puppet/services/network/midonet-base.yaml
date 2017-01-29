@@ -27,10 +27,9 @@ parameters:
     description: 'Port on which Calliope will listen'
     type: string
   TunnelZoneType:
-    label: Type of the Tunnel
+    default: 'gre'
     description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
     type: string
-    default: 'gre'
   UplinkType:
     default: "static"
     description: 'Type of the uplink. Can be set to `static` or `bgp`'
@@ -48,10 +47,10 @@ parameters:
                  (e.g. 10.0.0.0/16).
     type: string
   NetworkConfigPortName:
+    default: "edge-port"
     description: Name of the edge router port that is going to be configured for
                  this network.
     type: string
-    default: "edge-port"
   NetworkConfigSubnetName:
     default: "edge-subnet"
     description: "Subnet name that will be created for the above network"

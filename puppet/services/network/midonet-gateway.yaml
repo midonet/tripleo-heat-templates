@@ -33,7 +33,6 @@ parameters:
                  will be given to this interface.
     type: string
   StaticUplinkVeth1Ip:
-    default: "172.19.0.2"
     description: IP address the second virtual interface pair. This IP address
                  can be made up but it must be in the same network as
                  NetworkConfigPortPhysicalCidr.
