@@ -53,9 +53,7 @@ outputs:
       config_settings:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
-          - tripleo::network::midonet::cluster::nsdb_nodes: '"%{hiera(''midonet_nsdb_node_ips'')}"'
-            tripleo::network::midonet::cluster::keystone_host: '"%{hiera(''keystone_public_api_vip'')}"'
-            tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
+          - tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
             tripleo::network::midonet::cluster::keystone_user_password: {get_param: AdminPassword}
             tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetClusterTenant}
       step_config: |

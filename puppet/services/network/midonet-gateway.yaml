@@ -100,7 +100,6 @@ outputs:
             tripleo::network::midonet::gateway::bgp_neighbors_ips: {get_param: BgpUplinkNeighborsIps}
             tripleo::network::midonet::gateway::bgp_neighbors_asns: {get_param: BgpUplinkNeighborsAsns}
             tripleo::network::midonet::gateway::bgp_neighbors_nets: {get_param: BgpUplinkNeighborsNetworks}
-            tripleo::network::midonet::gateway::midonet_cluster_vip: '"%{hiera(''midonet_cluster_vip'')}"'
             tripleo::network::midonet::gateway::username: 'admin'
             tripleo::network::midonet::gateway::password: {get_param: AdminPassword}
             tripleo::network::midonet::gateway::tenant: 'service'

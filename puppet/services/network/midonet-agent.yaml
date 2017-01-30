@@ -51,10 +51,7 @@ outputs:
       config_settings:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
-          - tripleo::network::midonet::agent::controller_host: '"%{hiera(''keystone_public_api_vip'')}"'
-            tripleo::network::midonet::agent::midonet_cluster_vip: '"%{hiera(''midonet_cluster_vip'')}"'
-            tripleo::network::midonet::agent::zookeeper_hosts: '"%{hiera(''midonet_nsdb_node_ips'')}"'
-            tripleo::network::midonet::agent::tunnelzone_type: {get_param: TunnelZoneType}
+          - tripleo::network::midonet::agent::tunnelzone_type: {get_param: TunnelZoneType}
             tripleo::network::midonet::agent::metadata_port: {get_param: MidonetAgentMetadataPort}
             tripleo::network::midonet::agent::shared_secret: {get_param: NeutronMetadataProxySharedSecret}
             tripleo::network::midonet::agent::manage_repo: false
