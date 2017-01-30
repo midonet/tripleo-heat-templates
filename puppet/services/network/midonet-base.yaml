@@ -84,19 +84,15 @@ outputs:
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
-        tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
-        tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsCalliopePort}
-        tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
-        tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsCalliopePort}
-        midonet::network_creation::subnet_cidr: {get_param: NetworkConfigFipCidr}
-        midonet::network_creation::edge_router_name: {get_param: NetworkConfigRouterName}
-        midonet::network_creation::port_name: {get_param: NetworkConfigPortName}
-        midonet::network_creation::edge_subnet_name: {get_param: NetworkConfigSubnetName}
-        midonet::network_creation::edge_network_name: {get_param: NetworkConfigNetworkName}
-        midonet::network_creation::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
-        midonet::network_creation::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
-        midonet::network_creation::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
-        midonet::network_creation::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
+        tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
+        tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
+        tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
+        tripleo::network::midonet::config::edge_subnet_name: {get_param: NetworkConfigSubnetName}
+        tripleo::network::midonet::config::edge_network_name: {get_param: NetworkConfigNetworkName}
+        tripleo::network::midonet::config::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
+        tripleo::network::midonet::config::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
+        tripleo::network::midonet::config::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
+        tripleo::network::midonet::config::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::gateway::static_edge_router: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::gateway::static_fip: {get_param: NetworkConfigFipCidr}
         tripleo::network::midonet::gateway::static_port_name: {get_param: NetworkConfigPortName}
@@ -106,3 +102,7 @@ outputs:
         tripleo::network::midonet::gateway::static_allocation_pools: {get_param: NetworkConfigFipAllocationPools}
         tripleo::network::midonet::gateway::static_veth_network: {get_param: NetworkConfigPortPhysicalCidr}
         tripleo::network::midonet::gateway::static_veth0_ip: {get_param: NetworkConfigPortPhysicalIp}
+        tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
+        tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
+        tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsCalliopePort}
