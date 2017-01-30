@@ -17,3 +17,6 @@ parameter_defaults:
   NetworkConfigPortPhysicalIp: "172.19.0.1"
   NetworkConfigPortPhysicalName: "uplinkbridge"
   StaticUplinkVeth1Ip: "172.19.0.2"
+  BgpUplinkNeighborsIps: '["fake_neighbor_ip"]'
+  BgpUplinkNeighborsAsns: '["fake_neighbor_asn"]'
+  BgpUplinkNeighborsNetworks: '["fake_neighbor_net"]'
