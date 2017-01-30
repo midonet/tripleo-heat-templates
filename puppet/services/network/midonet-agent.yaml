@@ -30,6 +30,10 @@ parameters:
     description: Shared secret to prevent spoofing
     type: string
     hidden: true
+  TunnelZoneType:
+    default: 'gre'
+    description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
+    type: string
 
 resources:
   MidonetBase:
