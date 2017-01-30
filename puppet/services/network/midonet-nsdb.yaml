@@ -30,5 +30,13 @@ outputs:
       service_name: midonet_nsdb
       config_settings:
         tripleo::network::midonet::nsdb::zookeeper_cfg_dir: {get_param: MidonetNsdbZookeeperDir}
+        tripleo.midonet_nsdb.firewall_rules:
+          '333 midonet_nsdb':
+            dport:
+              - 2181
+              - 7000
+              - 7001
+              - 9042
+              - 9160
       step_config: |
         include ::tripleo::network::midonet::nsdb
