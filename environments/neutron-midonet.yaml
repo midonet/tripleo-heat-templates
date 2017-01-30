@@ -20,3 +20,4 @@ parameter_defaults:
   BgpUplinkNeighborsIps: '["fake_neighbor_ip"]'
   BgpUplinkNeighborsAsns: '["fake_neighbor_asn"]'
   BgpUplinkNeighborsNetworks: '["fake_neighbor_net"]'
+  BgpUplinkAdvertisedNetworks: '["0.0.0.0"]'
