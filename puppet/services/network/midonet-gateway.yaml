@@ -20,12 +20,6 @@ parameters:
                  via parameter_defaults in the resource registry.
     type: json
         Static uplink settings
-
-
-  #
-  # Fake static uplink settings
-  #
-
   StaticUplinkNetworkInterface:
     default: "br-ex"
     description: When configuring a fake static uplink a Linux bridge is
@@ -52,12 +46,6 @@ parameters:
     description: Whether you want the script in your system or not
                  (_MUST_ be present on the 1st run).
     type: string
-
-
-  #
-  # BGP uplink settings
-  #
-
   BgpUplinkLocalASNumber:
     description: 'Local AS number'
     type: string
