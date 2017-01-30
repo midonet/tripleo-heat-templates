@@ -68,7 +68,7 @@ parameters:
     description: Array containing the CIDR of the networks in which the
                  BGP neighbors are (length must be the same that in
                  BgpUplinkNeighborsIps and BgpUplinkNeighborsNetworks).
-     type: string
+    type: string
   AdminPassword:
     description: The password for the keystone admin account
                  (used to query neutron).
