@@ -28,10 +28,6 @@ parameters:
                  the MidoNet Cluster.
     type: string
     hidden: true
-  MidonetClusterTenant:
-    default: "service"
-    description: Keystone tenant to be used for authentication
-    type: string
   AdminPassword:
     description: The password for the keystone admin account, used to query neutron
     type: string
@@ -55,7 +51,6 @@ outputs:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
             tripleo::network::midonet::cluster::keystone_user_password: {get_param: AdminPassword}
-            tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetClusterTenant}
             tripleo.midonet_cluster.firewall_rules:
               '333 midonet_cluster':
                 dport:
