@@ -21,3 +21,5 @@ parameter_defaults:
   BgpUplinkNeighborsAsns: '["fake_neighbor_asn"]'
   BgpUplinkNeighborsNetworks: '["fake_neighbor_net"]'
   BgpUplinkAdvertisedNetworks: '["0.0.0.0"]'
+  MidonetClusterMaxHeapSize: "4096M"
+  MidonetClusterHeapNewSize: "2048M"

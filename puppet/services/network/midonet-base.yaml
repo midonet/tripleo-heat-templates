@@ -26,6 +26,10 @@ parameters:
     default: "8088"
     description: 'Port on which Calliope will listen'
     type: string
+  MidonetTenant:
+    default: "service"
+    description: Keystone tenant to be used for authentication
+    type: string
   TunnelZoneType:
     default: 'gre'
     description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
@@ -84,6 +88,7 @@ outputs:
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
+        tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
         tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
@@ -91,6 +96,7 @@ outputs:
         tripleo::network::midonet::config::edge_network_name: {get_param: NetworkConfigNetworkName}
         tripleo::network::midonet::config::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
         tripleo::network::midonet::config::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
+        tripleo::network::midonet::config::neutron_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::config::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
         tripleo::network::midonet::config::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::gateway::static_edge_router: {get_param: NetworkConfigRouterName}

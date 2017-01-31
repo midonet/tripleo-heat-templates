@@ -23,6 +23,16 @@ parameters:
     description: Keystone user to be used for authentication (must have
                  the admin role)
     type: string
+  MidonetClusterMaxHeapSize:
+    default: "4096M"
+    description: Maximum heap size to be used by the JVM running the
+                 MidoNet Cluster.
+    type: string
+  MidonetClusterHeapNewSize:
+    default: "2048M"
+    description: Size of the heap memory for the young generation in
+                 MidoNet Cluster.
+    type: string
   MidonetClusterPassword:
     description: The password for the keystone user that will be used by
                  the MidoNet Cluster.
@@ -51,6 +61,8 @@ outputs:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
             tripleo::network::midonet::cluster::keystone_user_password: {get_param: AdminPassword}
+            tripleo::network::midonet::cluster::max_heap_size: {get_param: MidonetClusterMaxHeapSize}
+            tripleo::network::midonet::cluster::heap_newsize: {get_param: MidonetClusterHeapNewSize}
             tripleo.midonet_cluster.firewall_rules:
               '333 midonet_cluster':
                 dport:
