@@ -7,6 +7,8 @@ resource_registry:
   OS::TripleO::Services::ComputeNeutronOvsAgent: OS::Heat::None
 
 parameter_defaults:
+  NeutronCorePlugin: "midonet.neutron.plugin_v2.MidonetPluginV2"
+  NeutronServicePlugins: "midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,lbaasv2,midonet.neutron.services.l3.l3_midonet.MidonetL3ServicePlugin"
   MidonetClusterPassword: "change_me"
   MidonetVersion: "oss"
   UplinkType: "static"
@@ -17,9 +19,9 @@ parameter_defaults:
   NetworkConfigPortPhysicalIp: "172.19.0.1"
   NetworkConfigPortPhysicalName: "uplinkbridge"
   StaticUplinkVeth1Ip: "172.19.0.2"
+  MidonetClusterMaxHeapSize: "4096M"
+  MidonetClusterHeapNewSize: "2048M"
   BgpUplinkNeighborsIps: '["fake_neighbor_ip"]'
   BgpUplinkNeighborsAsns: '["fake_neighbor_asn"]'
   BgpUplinkNeighborsNetworks: '["fake_neighbor_net"]'
   BgpUplinkAdvertisedNetworks: '["0.0.0.0"]'
-  MidonetClusterMaxHeapSize: "4096M"
-  MidonetClusterHeapNewSize: "2048M"
