@@ -25,6 +25,11 @@ parameters:
                  If the name is in the new standard (e.g. enp0s3) the program
                  `biosdevname` will be used to resolve to the old fashion name.
     type: string
+  NeutronServiceProviders:
+    default: 'LOADBALANCERV2:Midonet:midonet_ext.neutron.services.loadbalancer.v2_driver.MidonetLoadBalancerDriver:default'
+    description: Array containing all the service providers to be used
+                 by Neutron.
+    type: string
 
 outputs:
   role_data:
@@ -32,6 +37,7 @@ outputs:
     value:
       service_name: midonet_config
       config_settings:
-        midonet::network_creation::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
+        tripleo::network::midonet::config::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
+        tripleo::network::midonet::config::neutron_service_providers: {get_param: NeutronServiceProviders}
       step_config: |
         include ::tripleo::network::midonet::config

@@ -1,5 +1,8 @@
 # A Heat environment that can be used to deploy MidoNet Services
 resource_registry:
+  # Override default Neutron core plugin
+  OS::TripleO::Services::NeutronCorePlugin: OS::TripleO::Services::MidonetConfig
+  # MidoNet does not require any of the following agents
   OS::TripleO::Services::NeutronDhcpAgent: OS::Heat::None
   OS::TripleO::Services::NeutronL3Agent: OS::Heat::None
   OS::TripleO::Services::NeutronMetadataAgent: OS::Heat::None
