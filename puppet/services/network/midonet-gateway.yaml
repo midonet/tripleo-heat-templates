@@ -25,11 +25,6 @@ parameters:
                  created in the underlay. This variable holds the name that
                  will be given to this interface.
     type: string
-  StaticUplinkVeth1Ip:
-    description: IP address the second virtual interface pair. This IP address
-                 can be made up but it must be in the same network as
-                 NetworkConfigPortPhysicalCidr.
-    type: string
   StaticUplinkScriptDirectory:
     default: "/tmp"
     description: Directory where the script that is used to set up the fake
@@ -91,7 +86,6 @@ outputs:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::gateway::static_nic: {get_param: StaticUplinkNetworkInterface}
-            tripleo::network::midonet::gateway::static_veth1_ip: {get_param: StaticUplinkVeth1Ip}
             tripleo::network::midonet::gateway::static_scripts_dir: {get_param: StaticUplinkScriptDirectory}
             tripleo::network::midonet::gateway::static_uplink_script: {get_param: StaticUplinkScriptName}
             tripleo::network::midonet::gateway::static_ensure_scripts: {get_param: StaticUplinkScriptEnsure}

@@ -79,6 +79,11 @@ parameters:
     description: IP address that the physical interface has assigned.
                  (e.g. 50.1.40.12)
     type: string
+  StaticUplinkVeth1Ip:
+    description: IP address the second virtual interface pair. This IP address
+                 can be made up but it must be in the same network as
+                 NetworkConfigPortPhysicalCidr.
+    type: string
 
 outputs:
   role_data:
@@ -98,7 +103,8 @@ outputs:
         tripleo::network::midonet::config::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
         tripleo::network::midonet::config::neutron_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::config::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
-        tripleo::network::midonet::config::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
+        tripleo::network::midonet::config::port_fixed_ip: {get_param: StaticUplinkVeth1Ip}
+        tripleo::network::midonet::gateway::static_veth1_ip: {get_param: StaticUplinkVeth1Ip}
         tripleo::network::midonet::gateway::static_edge_router: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::gateway::static_fip: {get_param: NetworkConfigFipCidr}
         tripleo::network::midonet::gateway::static_port_name: {get_param: NetworkConfigPortName}

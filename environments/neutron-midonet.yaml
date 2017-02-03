@@ -20,7 +20,7 @@ parameter_defaults:
   NetworkConfigFipAllocationPools: '["start=10.0.0.20,end=10.0.255.254"]'
   NetworkConfigPortPhysicalCidr: "172.19.0.0/30"
   NetworkConfigPortPhysicalIp: "172.19.0.1"
-  NetworkConfigPortPhysicalName: "uplinkbridge"
+  NetworkConfigPortPhysicalName: "veth1"
   StaticUplinkVeth1Ip: "172.19.0.2"
   MidonetClusterMaxHeapSize: "4096M"
   MidonetClusterHeapNewSize: "2048M"
