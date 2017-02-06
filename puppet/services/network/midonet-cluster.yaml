@@ -64,7 +64,7 @@ outputs:
             tripleo::network::midonet::cluster::max_heap_size: {get_param: MidonetClusterMaxHeapSize}
             tripleo::network::midonet::cluster::heap_newsize: {get_param: MidonetClusterHeapNewSize}
             tripleo.midonet_cluster.firewall_rules:
-              '333 midonet_cluster':
+              '310 MidoNet Cluster':
                 dport:
                   - 8181
       step_config: |
