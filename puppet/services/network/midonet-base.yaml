@@ -30,10 +30,6 @@ parameters:
     default: "service"
     description: Keystone tenant to be used for authentication
     type: string
-  TunnelZoneType:
-    default: 'gre'
-    description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
-    type: string
   UplinkType:
     default: "static"
     description: 'Type of the uplink. Can be set to `static` or `bgp`'
