@@ -11,7 +11,7 @@ resource_registry:
 
 parameter_defaults:
   NeutronCorePlugin: "midonet_v2_ext"
-  NeutronServicePlugins: "midonet_l3_ext"
+  NeutronServicePlugins: "midonet_l3_ext,midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,qos,neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,vpnaas,midonet_logging_resource"
   MidonetClusterPassword: "change_me"
   MidonetVersion: "oss"
   UplinkType: "static"

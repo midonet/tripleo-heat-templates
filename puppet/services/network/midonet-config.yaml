@@ -30,6 +30,10 @@ parameters:
     description: Array containing all the service providers to be used
                  by Neutron.
     type: string
+  NeutronApiExtensionsPath:
+    default: '/usr/lib/python2.7/site-packages/midonet_ext/neutron/extensions'
+    description: Array containing the Neutron API extensions path.
+    type: string
 
 outputs:
   role_data:
@@ -39,5 +43,6 @@ outputs:
       config_settings:
         tripleo::network::midonet::config::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
         tripleo::network::midonet::config::neutron_service_providers: {get_param: NeutronServiceProviders}
+        neutron::api_extensions_path: {get_param: NeutronApiExtensionsPath}
       step_config: |
         include ::tripleo::network::midonet::config
