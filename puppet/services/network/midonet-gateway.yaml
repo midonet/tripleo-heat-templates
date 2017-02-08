@@ -43,7 +43,7 @@ parameters:
   BgpUplinkLocalASNumber:
     description: 'Local AS number'
     type: string
-    default: "65497"
+    default: '"65497"'
   BgpUplinkAdvertisedNetworks:
     description: Floating IP networks that the gateway is going to advertise
                  (e.g. ["10.0.0.0/16"]).

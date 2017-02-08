@@ -10,8 +10,8 @@ resource_registry:
   OS::TripleO::Services::ComputeNeutronOvsAgent: OS::Heat::None
 
 parameter_defaults:
-  NeutronCorePlugin: "midonet.neutron.plugin_v2.MidonetPluginV2"
-  NeutronServicePlugins: "midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,lbaasv2,midonet.neutron.services.l3.l3_midonet.MidonetL3ServicePlugin"
+  NeutronCorePlugin: "midonet_v2_ext"
+  NeutronServicePlugins: "midonet_l3_ext"
   MidonetClusterPassword: "change_me"
   MidonetVersion: "oss"
   UplinkType: "static"
