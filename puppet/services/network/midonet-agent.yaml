@@ -58,11 +58,35 @@ outputs:
             tripleo::network::midonet::agent::username: 'admin'
             tripleo::network::midonet::agent::password: {get_param: AdminPassword}
             tripleo.midonet_agent.firewall_rules:
-              '300 MidoNet Agent (VXLAN)':
+              '300 MidoNet Agent (Metadata)':
+                iniface: 'metadata'
+              '301 MidoNet Agent (VXLAN)':
                 proto: 'udp'
                 dport: 4789
-              '300 MidoNet Agent (VXLAN)':
+              '302 MidoNet Agent (VXLAN)':
+                proto: 'udp'
+                dport: 5123
+              '303 MidoNet Agent (VXLAN)':
                 proto: 'udp'
                 dport: 6677
+              '304 MidoNet Agent (VXLAN)':
+                proto: 'udp'
+                dport: 8899
+              '310 MidoNet Agent (VXLAN)':
+                chain: 'FORWARD'
+                proto: 'udp'
+                dport: 4789
+              '311 MidoNet Agent (VXLAN)':
+                chain: 'FORWARD'
+                proto: 'udp'
+                dport: 5123
+              '312 MidoNet Agent (VXLAN)':
+                chain: 'FORWARD'
+                proto: 'udp'
+                dport: 6677
+              '313 MidoNet Agent (VXLAN)':
+                chain: 'FORWARD'
+                proto: 'udp'
+                dport: 8899
       step_config: |
         include ::tripleo::network::midonet::agent
