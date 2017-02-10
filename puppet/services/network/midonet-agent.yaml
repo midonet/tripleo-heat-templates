@@ -60,6 +60,8 @@ outputs:
             tripleo.midonet_agent.firewall_rules:
               '300 MidoNet Agent (Metadata)':
                 iniface: 'metadata'
+                proto: 'all'
+                action: 'accept'
               '301 MidoNet Agent (VXLAN)':
                 proto: 'udp'
                 dport: 4789
