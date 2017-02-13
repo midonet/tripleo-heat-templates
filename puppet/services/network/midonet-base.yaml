@@ -69,13 +69,14 @@ parameters:
     type: string
   NetworkConfigPortPhysicalCidr:
     description: Network on which the physical interface that is bound to
-                 the edge router port is (e.g. 172.19.0.2/26).
+                 the edge router port is (e.g. 172.19.0.0/26).
     type: string
   NetworkConfigPortPhysicalIp:
     description: IP address that the physical interface has assigned.
-                 (e.g. 50.1.40.12)
+                 (e.g. 172.19.0.1)
     type: string
   StaticUplinkVeth1Ip:
+    default: '172.19.0.2'
     description: IP address the second virtual interface pair. This IP address
                  can be made up but it must be in the same network as
                  NetworkConfigPortPhysicalCidr.

@@ -45,20 +45,24 @@ parameters:
     type: string
     default: '"65497"'
   BgpUplinkAdvertisedNetworks:
+    default: '[""]'
     description: Floating IP networks that the gateway is going to advertise
                  (e.g. ["10.0.0.0/16"]).
     type: string
   BgpUplinkNeighborsIps:
+    default: '[""]'
     description: Array containing the IPs of the BGP neighbors (length must
                  be the same that in BgpUplinkNeighborsAsns and
                  BgpUplinkNeighborsNetworks).
     type: string
   BgpUplinkNeighborsAsns:
+    default: '[""]'
     description: Array containing the ASNs of the BGP neighbors (length must
                  be the same that in BgpUplinkNeighborsIps and
                  BgpUplinkNeighborsNetworks).
     type: string
   BgpUplinkNeighborsNetworks:
+    default: '[""]'
     description: Array containing the CIDR of the networks in which the
                  BGP neighbors are (length must be the same that in
                  BgpUplinkNeighborsIps and BgpUplinkNeighborsNetworks).

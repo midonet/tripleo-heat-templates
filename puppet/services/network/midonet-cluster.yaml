@@ -33,11 +33,6 @@ parameters:
     description: Size of the heap memory for the young generation in
                  MidoNet Cluster.
     type: string
-  MidonetClusterPassword:
-    description: The password for the keystone user that will be used by
-                 the MidoNet Cluster.
-    type: string
-    hidden: true
   AdminPassword:
     description: The password for the keystone admin account, used to query neutron
     type: string
