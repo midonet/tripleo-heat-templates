@@ -34,6 +34,10 @@ parameters:
     default: 'vxlan'
     description: 'Type of the tunnels on the overlay. Choose between `gre` and `vxlan`'
     type: string
+  MidonetAgentMaxHeapSize:
+    default: '2048M'
+    description: 'Amount of heap memory the JVM will use to run the MidoNet Agent'
+    type: string
 
 resources:
   MidonetBase:
@@ -57,6 +61,7 @@ outputs:
             tripleo::network::midonet::agent::manage_repo: false
             tripleo::network::midonet::agent::username: 'admin'
             tripleo::network::midonet::agent::password: {get_param: AdminPassword}
+            tripleo::network::midonet::agent::max_heap_size: {get_param: MidonetAgentMaxHeapSize}
             tripleo.midonet_agent.firewall_rules:
               '300 MidoNet Agent (Metadata)':
                 iniface: 'metadata'
