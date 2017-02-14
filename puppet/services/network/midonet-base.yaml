@@ -81,6 +81,9 @@ parameters:
                  can be made up but it must be in the same network as
                  NetworkConfigPortPhysicalCidr.
     type: string
+  MidonetRelease:
+    description: MidoNet release that is being deployed.
+    type: string
 
 outputs:
   role_data:
@@ -89,8 +92,10 @@ outputs:
       service_name: midonet_base
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
+        tripleo::network::midonet::analytics::midonet_version: {get_param: MidonetRelease}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
+        tripleo::network::midonet::cluster::midonet_version: {get_param: MidonetRelease}
         tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
         tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
