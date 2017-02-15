@@ -109,6 +109,11 @@ parameters:
     default: true
     description: (MEM ONLY) Whether to enable Jarvis or not.
     type: boolean
+  AdminPassword:
+    description: The password for the keystone admin account, used for
+                 monitoring, querying neutron etc.
+    type: string
+    hidden: true
 
 resources:
   MidonetBase:
