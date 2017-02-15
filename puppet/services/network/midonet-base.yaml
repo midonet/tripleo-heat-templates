@@ -118,5 +118,6 @@ outputs:
         tripleo::network::midonet::gateway::static_veth0_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
         tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::insights::midonet_version: {get_param: MidonetRelease}
         tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsCalliopePort}

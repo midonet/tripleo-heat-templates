@@ -20,10 +20,26 @@ parameters:
     type: json
   MemInsightsHeapSize:
     default: "4"
-    description: "JVM heap memory used by Insights (in GB)"
+    description: JVM heap memory used by Insights (in GB).
     type: string
     constraints:
       - allowed_pattern: "^[0-9]*$"
+  MemInsightsAllinone:
+    default: false
+    description: Set to `true` if deploying an all-in-one node.
+    type: boolean
+  MemInsightsCuratorVersion:
+    default: ''
+    description: Version of Elasticsearch Curator.
+    type: string
+  MemInsightsElkBindIp:
+    default: ''
+    description: Which interface will the ELK instance be binding to.
+    type: string
+  MemInsightsElkClusterName:
+    default: "elasticsearch"
+    description: Name of the ELK cluster.
+    type: string
 
 resources:
   MidonetBase:
@@ -42,7 +58,10 @@ outputs:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::insights::heap_size_gb: {get_param: MemInsightsHeapSize}
-            tripleo::network::midonet::insights::allinone: true
-            tripleo::network::midonet::insights::zookeeper_hosts: '"%{hiera(''midonet_nsdb_node_ips'')}"'
+            tripleo::network::midonet::insights::allinone: {get_param: MemInsightsAllinone}
+            tripleo::network::midonet::insights::curator_version: {get_param: MemInsightsCuratorVersion}
+            tripleo::network::midonet::insights::elk_bind_ip: {get_param: MemInsightsElkBindIp}
+            tripleo::network::midonet::insights::elk_cluster_name: {get_param: MemInsightsElkClusterName}
+            tripleo::network::midonet::insights::elk_hosts: '"%{hiera(\"midonet_analytics_node_ips\")}"'
       step_config: |
         include ::tripleo::network::midonet::insights
