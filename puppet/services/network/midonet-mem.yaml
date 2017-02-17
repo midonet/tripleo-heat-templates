@@ -46,12 +46,6 @@ parameters:
     default: "/var/www/html/midonet-manager"
     description: Path where the MEM package is installed.
     type: string
-  MemApiVersion:
-    default: "5.4"
-    description: The default value for the api_version is set to latest version.
-                 In case you are using and older MidoNet REST API, change the
-                 version accordingly.
-    type: string
   MemApiToken:
     default: false
     description: If desired, auto-login can be enabled by setting the value of
@@ -152,7 +146,6 @@ outputs:
             tripleo::network::midonet::mem::mem_analytics_namespace: {get_param: MemAnalyticsNamespace}
             tripleo::network::midonet::mem::mem_package: {get_param: MemPackageName}
             tripleo::network::midonet::mem::mem_install_path: {get_param: MemInstallPath}
-            tripleo::network::midonet::mem::mem_api_version: {get_param: MemApiVersion}
             tripleo::network::midonet::mem::mem_api_token: {get_param: MemApiToken}
             tripleo::network::midonet::mem::mem_agent_config_api_namespace: {get_param: MemAgentConfigApiNamespace}
             tripleo::network::midonet::mem::mem_poll_enabled: {get_param: MemPollEnabled}
