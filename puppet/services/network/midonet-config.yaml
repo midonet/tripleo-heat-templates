@@ -26,10 +26,10 @@ parameters:
                  `biosdevname` will be used to resolve to the old fashion name.
     type: string
   NeutronServiceProviders:
-    default: 'LOADBALANCERV2:Midonet:midonet_ext.neutron.services.loadbalancer.v2_driver.MidonetLoadBalancerDriver:default'
+    default: ['LOADBALANCERV2:Midonet:midonet_ext.neutron.services.loadbalancer.v2_driver.MidonetLoadBalancerDriver:default', 'VPN:Midonet:midonet.neutron.services.vpn.service_drivers.midonet_ipsec.MidonetIPsecVPNDriver:default']
     description: Array containing all the service providers to be used
                  by Neutron.
-    type: string
+    type: comma_delimited_list
   NeutronApiExtensionsPath:
     default: '/usr/lib/python2.7/site-packages/midonet_ext/neutron/extensions'
     description: Array containing the Neutron API extensions path.
