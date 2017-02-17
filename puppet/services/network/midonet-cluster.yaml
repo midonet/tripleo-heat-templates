@@ -132,13 +132,18 @@ outputs:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::cluster::keystone_user_name: {get_param: MidonetClusterUsername}
             tripleo::network::midonet::cluster::keystone_user_password: {get_param: AdminPassword}
-            tripleo::network::midonet::cluster::max_heap_size: {get_param: MidonetClusterMaxHeapSize}
-            tripleo::network::midonet::cluster::heap_newsize: {get_param: MidonetClusterHeapNewSize}
             tripleo::network::midonet::cluster::keystone_protocol: {get_param: [EndpointMap, KeystoneInternal, protocol] }
             tripleo::network::midonet::cluster::keystone_admin_token: {get_param: AdminToken}
-            tripleo::network::midonet::cluster::keystome_domain_name: {get_param: MidonetClusterKeystoneDomainName}
+            tripleo::network::midonet::cluster::keystone_domain_name: {get_param: MidonetClusterKeystoneDomainName}
             tripleo::network::midonet::cluster::keystone_domain_id: {get_param: MidonetClusterKeystoneDomainId}
             tripleo::network::midonet::cluster::keystone_version: {get_param: MidonetClusterKeystoneVersion}
+            tripleo::network::midonet::cluster::keystone_host: '"%{hiera(\"keystone_public_api_vip\")}"'
+            tripleo::network::midonet::cluster::keystone_port: '5000'
+            tripleo::network::midonet::cluster::cluster_port: {get_param: MidonetClusterPort}
+            tripleo::network::midonet::cluster::state_proxy_address: '"%{::ipaddress}"'
+            tripleo::network::midonet::cluster::state_proxy_port: '2346'
+            tripleo::network::midonet::cluster::max_heap_size: {get_param: MidonetClusterMaxHeapSize}
+            tripleo::network::midonet::cluster::heap_newsize: {get_param: MidonetClusterHeapNewSize}
             tripleo::network::midonet::cluster::service_name: {get_param: MidonetClusterServiceName}
             tripleo::network::midonet::cluster::service_ensure: {get_param: MidonetClusterServiceEnsure}
             tripleo::network::midonet::cluster::service_enable: {get_param: MidonetClusterServiceEnable}
