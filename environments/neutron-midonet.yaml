@@ -13,7 +13,7 @@ parameter_defaults:
   NeutronCorePlugin: "midonet_v2_ext"
   NeutronServicePlugins: "midonet_l3_ext,midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,qos,neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,vpnaas,midonet_logging_resource"
   MidonetClusterPassword: "change_me"
-  MidonetVersion: "mem"
+  MidonetVersion: "oss"
   MidonetRelease: "5.4"
   UplinkType: "static"
   NetworkConfigFipCidr: "10.0.0.0/16"
@@ -25,7 +25,3 @@ parameter_defaults:
   StaticUplinkVeth1Ip: "172.19.0.2"
   MidonetClusterMaxHeapSize: "4096M"
   MidonetClusterHeapNewSize: "2048M"
-  BgpUplinkNeighborsIps: '["fake_neighbor_ip"]'
-  BgpUplinkNeighborsAsns: '["fake_neighbor_asn"]'
-  BgpUplinkNeighborsNetworks: '["fake_neighbor_net"]'
-  BgpUplinkAdvertisedNetworks: '["0.0.0.0"]'
