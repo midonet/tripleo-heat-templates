@@ -14,7 +14,7 @@ parameter_defaults:
   NeutronServicePlugins: "midonet_l3_ext,midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,qos,neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,vpnaas,midonet_logging_resource"
   MidonetClusterPassword: "change_me"
   MidonetVersion: "oss"
-  MidonetRelease: "5.4"
+  MidonetRelease: '"5.4"'
   UplinkType: "static"
   NetworkConfigFipCidr: "10.0.0.0/16"
   NetworkConfigFipGatewayIp: "10.0.0.1"
