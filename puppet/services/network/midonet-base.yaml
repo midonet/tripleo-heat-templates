@@ -93,6 +93,7 @@ outputs:
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
         tripleo::network::midonet::analytics::midonet_version: {get_param: MidonetRelease}
+        tripleo::network::midonet::cluster::endpoint_port: {get_param: MemInsightsCalliopePort}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::cluster::midonet_version: {get_param: MidonetRelease}
