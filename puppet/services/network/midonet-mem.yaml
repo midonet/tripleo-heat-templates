@@ -22,10 +22,6 @@ parameters:
     default: false
     description: 'Whether to use SSL or not'
     type: boolean
-  MemAnalyticsPort:
-    default: ":8080"
-    description: The port where the midonet analytics is listening.
-    type: string
   MemApiNamespace:
     default: "midonet-api"
     description: Namespace for the MidoNet Cluster (used to configure Apache).
@@ -140,7 +136,6 @@ outputs:
           - tripleo::network::midonet::mem::cluster_ip: '"%{hiera(''midonet_cluster_vip'')}"'
             tripleo::network::midonet::mem::analytics_ip: '"%{hiera(''midonet_analytics_vip'')}"'
             tripleo::network::midonet::mem::is_ssl: {get_param: MemUseSsl}
-            tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemAnalyticsPort}
             tripleo::network::midonet::mem::mem_api_namespace: {get_param: MemApiNamespace}
             tripleo::network::midonet::mem::mem_trace_namespace: {get_param: MemTraceNamespace}
             tripleo::network::midonet::mem::mem_analytics_namespace: {get_param: MemAnalyticsNamespace}
