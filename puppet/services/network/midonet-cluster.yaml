@@ -161,5 +161,8 @@ outputs:
               '310 MidoNet Cluster':
                 dport:
                   - 8181
+              '311 MidoNet Cluster (Analytics Endpoint)':
+                dport:
+                  - 8099
       step_config: |
         include ::tripleo::network::midonet::cluster
