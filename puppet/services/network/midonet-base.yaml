@@ -22,8 +22,8 @@ parameters:
     default: false
     description: 'Set to true if using insights'
     type: boolean
-  MemInsightsCalliopePort:
-    default: "8088"
+  MemInsightsPort:
+    default: "8099"
     description: 'Port on which Calliope will listen'
     type: string
   MidonetTenant:
@@ -93,7 +93,7 @@ outputs:
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
         tripleo::network::midonet::analytics::midonet_version: {get_param: MidonetRelease}
-        tripleo::network::midonet::cluster::endpoint_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::cluster::endpoint_port: {get_param: MemInsightsPort}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::cluster::midonet_version: {get_param: MidonetRelease}
@@ -118,8 +118,8 @@ outputs:
         tripleo::network::midonet::gateway::static_veth_network: {get_param: NetworkConfigPortPhysicalCidr}
         tripleo::network::midonet::gateway::static_veth0_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
-        tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsPort}
         tripleo::network::midonet::insights::midonet_version: {get_param: MidonetRelease}
         tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::mem::mem_api_version: {get_param: MidonetRelease}
-        tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsCalliopePort}
+        tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsPort}
