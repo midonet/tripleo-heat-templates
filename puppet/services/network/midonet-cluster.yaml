@@ -154,7 +154,7 @@ outputs:
             tripleo::network::midonet::cluster::cluster_api_port: {get_param: MidonetClusterPort}
             tripleo::network::midonet::cluster::elk_cluster_name: {get_param: MidonetClusterElkClusterName}
             tripleo::network::midonet::cluster::elk_target_endpoint: {get_param: MidonetClusterElkTargetEndpoint}
-            tripleo::network::midonet::cluster::endpoint_host: '"%{hiera(\"midonet_cluster_vip\")}"'
+            tripleo::network::midonet::cluster::endpoint_host: '"%{::ipaddress}"'
             tripleo::network::midonet::cluster::flow_history_port: {get_param: MidonetClusterFlowHistoryPort}
             tripleo::network::midonet::cluster::jarvis_enabled: {get_param: MidonetClusterJarvisEnabled}
             tripleo.midonet_cluster.firewall_rules:
