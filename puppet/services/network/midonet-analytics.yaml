@@ -32,10 +32,6 @@ parameters:
     default: ''
     description: Version of Elasticsearch Curator.
     type: string
-  MemInsightsElkBindIp:
-    default: ''
-    description: Which interface will the ELK instance be binding to.
-    type: string
   MemInsightsElkClusterName:
     default: "elasticsearch"
     description: Name of the ELK cluster.
@@ -60,7 +56,7 @@ outputs:
           - tripleo::network::midonet::insights::heap_size_gb: {get_param: MemInsightsHeapSize}
             tripleo::network::midonet::insights::allinone: {get_param: MemInsightsAllinone}
             tripleo::network::midonet::insights::curator_version: {get_param: MemInsightsCuratorVersion}
-            tripleo::network::midonet::insights::elk_bind_ip: {get_param: MemInsightsElkBindIp}
+            tripleo::network::midonet::insights::elk_bind_ip: '"%{::ipaddress}"'
             tripleo::network::midonet::insights::elk_cluster_name: {get_param: MemInsightsElkClusterName}
             tripleo::network::midonet::insights::elk_hosts: '"%{hiera(\"midonet_analytics_node_ips\")}"'
       step_config: |
