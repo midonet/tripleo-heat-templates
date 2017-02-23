@@ -24,6 +24,7 @@ parameters:
                  to be in the old-fashioned form (i.e. eth0 instead of enp0s3).
                  If the name is in the new standard (e.g. enp0s3) the program
                  `biosdevname` will be used to resolve to the old fashion name.
+                 Set to `veth1` if setting up a static link.
     type: string
   NeutronServiceProviders:
     default: ['LOADBALANCERV2:Midonet:midonet_ext.neutron.services.loadbalancer.v2_driver.MidonetLoadBalancerDriver:default', 'VPN:Midonet:midonet.neutron.services.vpn.service_drivers.midonet_ipsec.MidonetIPsecVPNDriver:default']
