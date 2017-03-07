@@ -63,6 +63,7 @@ parameters:
       MidonetNsdbNetwork: internal_api
       MidonetClusterNetwork: internal_api
       MidonetAnalyticsNetwork: internal_api
+      MidonetGatewayNetwork: internal_api
       # We special-case the default ResolveNetwork for the CephStorage role
       # for backwards compatibility, all other roles default to internal_api
       CephStorageHostnameResolveNetwork: storage
