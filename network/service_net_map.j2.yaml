@@ -56,10 +56,6 @@ parameters:
       CephRgwNetwork: storage
       PublicNetwork: external
       OpendaylightApiNetwork: internal_api
-      OvnDbsNetwork: internal_api
-      MistralApiNetwork: internal_api
-      ZaqarApiNetwork: internal_api
-      PacemakerRemoteNetwork: internal_api
       MidonetNsdbNetwork: internal_api
       MidonetClusterNetwork: internal_api
       MidonetAnalyticsNetwork: internal_api

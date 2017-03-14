@@ -535,9 +535,8 @@ resources:
       - {{role.name}}AllNodesValidationDeployment
 {% endfor %}
     properties:
-      servers:
 {% for role in roles %}
-        {{role.name}}: {get_attr: [{{role.name}}, attributes, nova_server_resource]}
+      servers: {get_attr: [{{role.name}}, attributes, nova_server_resource]}
 {% endfor %}
 
   # Post deployment steps for all roles

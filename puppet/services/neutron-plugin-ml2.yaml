@@ -127,6 +127,3 @@ outputs:
 
       step_config: |
         include ::tripleo::profile::base::neutron::plugins::ml2
-      service_config_settings:
-        horizon:
-          neutron::plugins::ml2::mechanism_drivers: {get_param: NeutronMechanismDrivers}

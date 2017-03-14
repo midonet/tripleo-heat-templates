@@ -51,6 +51,7 @@ outputs:
       service_name: horizon
       monitoring_subscription: {get_param: MonitoringSubscriptionHorizon}
       config_settings:
+        horizon::help_url: 'https://access.redhat.com/documentation/en/red-hat-openstack-platform/'
         horizon::allowed_hosts: {get_param: HorizonAllowedHosts}
         neutron::plugins::ml2::mechanism_drivers:
           str_replace:

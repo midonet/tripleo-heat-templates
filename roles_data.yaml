@@ -102,7 +102,7 @@
 
 - name: Compute
   CountDefault: 1
-  HostnameFormatDefault: '%stackname%-novacompute-%index%'
+  HostnameFormatDefault: '%stackname%-compute-%index%'
   ServicesDefault:
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephClient
