@@ -54,6 +54,7 @@ parameters:
       ManilaAdmin: {protocol: http, port: '8786', host: IP_ADDRESS}
       ManilaInternal: {protocol: http, port: '8786', host: IP_ADDRESS}
       ManilaPublic: {protocol: http, port: '8786', host: IP_ADDRESS}
+      MidonetClusterInternal: {protocol: http, port: '8181', host: IP_ADDRESS}
       MysqlInternal: {protocol: mysql+pymysql, port: '3306', host: IP_ADDRESS}
       NeutronAdmin: {protocol: http, port: '9696', host: IP_ADDRESS}
       NeutronInternal: {protocol: http, port: '9696', host: IP_ADDRESS}
@@ -4003,6 +4004,88 @@ outputs:
                         template: NETWORK_uri
             - ':'
             - get_param: [EndpointMap, ManilaPublic, port]
+      MidonetClusterInternal:
+        host:
+          str_replace:
+            template:
+              get_param: [EndpointMap, MidonetClusterInternal, host]
+            params:
+              CLOUDNAME:
+                get_param:
+                - CloudEndpoints
+                - get_param: [ServiceNetMap, MidonetClusterNetwork]
+              IP_ADDRESS:
+                get_param:
+                - NetIpMap
+                - str_replace:
+                    params:
+                      NETWORK:
+                        get_param: [ServiceNetMap, MidonetClusterNetwork]
+                    template: NETWORK_uri
+        host_nobrackets:
+          str_replace:
+            template:
+              get_param: [EndpointMap, MidonetClusterInternal, host]
+            params:
+              CLOUDNAME:
+                get_param:
+                - CloudEndpoints
+                - get_param: [ServiceNetMap, MidonetClusterNetwork]
+              IP_ADDRESS:
+                get_param:
+                - NetIpMap
+                - get_param: [ServiceNetMap, MidonetClusterNetwork]
+        port:
+          get_param: [EndpointMap, MidonetClusterInternal, port]
+        protocol:
+          get_param: [EndpointMap, MidonetClusterInternal, protocol]
+        uri:
+          list_join:
+          - ''
+          - - get_param: [EndpointMap, MidonetClusterInternal, protocol]
+            - ://
+            - str_replace:
+                template:
+                  get_param: [EndpointMap, MidonetClusterInternal, host]
+                params:
+                  CLOUDNAME:
+                    get_param:
+                    - CloudEndpoints
+                    - get_param: [ServiceNetMap, MidonetClusterNetwork]
+                  IP_ADDRESS:
+                    get_param:
+                    - NetIpMap
+                    - str_replace:
+                        params:
+                          NETWORK:
+                            get_param: [ServiceNetMap, MidonetClusterNetwork]
+                        template: NETWORK_uri
+            - ':'
+            - get_param: [EndpointMap, MidonetClusterInternal, port]
+            - /midonet-api
+        uri_no_suffix:
+          list_join:
+          - ''
+          - - get_param: [EndpointMap, MidonetClusterInternal, protocol]
+            - ://
+            - str_replace:
+                template:
+                  get_param: [EndpointMap, MidonetClusterInternal, host]
+                params:
+                  CLOUDNAME:
+                    get_param:
+                    - CloudEndpoints
+                    - get_param: [ServiceNetMap, MidonetClusterNetwork]
+                  IP_ADDRESS:
+                    get_param:
+                    - NetIpMap
+                    - str_replace:
+                        params:
+                          NETWORK:
+                            get_param: [ServiceNetMap, MidonetClusterNetwork]
+                        template: NETWORK_uri
+            - ':'
+            - get_param: [EndpointMap, MidonetClusterInternal, port]
       MysqlInternal:
         host:
           str_replace:

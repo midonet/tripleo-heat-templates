@@ -1,6 +1,13 @@
 # Data in this file is used to generate the endpoint_map.yaml template.
 # Run the script build_endpoint_map.py to regenerate the file.
 
+MidonetCluster:
+    Internal:
+        net_param: MidonetCluster
+        uri_suffixes:
+            '': /midonet-api
+    port: 8181
+
 Aodh:
     Internal:
         net_param: AodhApi
