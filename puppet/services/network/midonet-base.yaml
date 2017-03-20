@@ -75,6 +75,13 @@ parameters:
     description: IP address that the physical interface has assigned.
                  (e.g. 172.19.0.1)
     type: string
+  NetworkConfigPortPhysicalName:
+    description: Physical interface to which the port will be bound to. It has
+                 to be in the old-fashioned form (i.e. eth0 instead of enp0s3).
+                 If the name is in the new standard (e.g. enp0s3) the program
+                 `biosdevname` will be used to resolve to the old fashion name.
+                 Set to `veth1` if setting up a static link.
+    type: string
   StaticUplinkVeth1Ip:
     default: '172.19.0.2'
     description: IP address the second virtual interface pair. This IP address
@@ -97,16 +104,18 @@ outputs:
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::cluster::midonet_version: {get_param: MidonetRelease}
-        tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
-        tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
-        tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
-        tripleo::network::midonet::config::edge_subnet_name: {get_param: NetworkConfigSubnetName}
-        tripleo::network::midonet::config::edge_network_name: {get_param: NetworkConfigNetworkName}
-        tripleo::network::midonet::config::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
         tripleo::network::midonet::config::allocation_pools: {get_param: NetworkConfigFipAllocationPools}
-        tripleo::network::midonet::config::neutron_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::config::edge_cidr: {get_param: NetworkConfigPortPhysicalCidr}
+        tripleo::network::midonet::config::edge_network_name: {get_param: NetworkConfigNetworkName}
+        tripleo::network::midonet::config::edge_subnet_name: {get_param: NetworkConfigSubnetName}
+        tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
+        tripleo::network::midonet::config::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
+        tripleo::network::midonet::config::neutron_tenant_name: {get_param: MidonetTenant}
         tripleo::network::midonet::config::port_fixed_ip: {get_param: StaticUplinkVeth1Ip}
+        tripleo::network::midonet::config::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
+        tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
+        tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
+        tripleo::network::midonet::gateway::nic: {get_param: NetworkConfigPortPhysicalName}
         tripleo::network::midonet::gateway::static_veth1_ip: {get_param: StaticUplinkVeth1Ip}
         tripleo::network::midonet::gateway::static_edge_router: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::gateway::static_fip: {get_param: NetworkConfigFipCidr}
