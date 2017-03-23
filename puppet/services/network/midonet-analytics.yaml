@@ -59,8 +59,8 @@ outputs:
             tripleo::network::midonet::insights::elk_bind_ip: {get_param: [ServiceNetMap, MidonetAnalyticsNetwork]}
             tripleo::network::midonet::insights::elk_cluster_name: {get_param: MemInsightsElkClusterName}
             tripleo::network::midonet::insights::elk_hosts: '"%{hiera(\"midonet_analytics_node_ips\")}"'
-            tripleo.midonet_nsdb.firewall_rules:
-              '333 midonet_nsdb':
+            tripleo.midonet_analytics.firewall_rules:
+              '334 midonet_analytics':
                 dport:
                   - 5000
                   - 5001
