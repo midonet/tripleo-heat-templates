@@ -111,7 +111,7 @@ outputs:
         tripleo::network::midonet::config::edge_router_name: {get_param: NetworkConfigRouterName}
         tripleo::network::midonet::config::gateway_ip: {get_param: NetworkConfigFipGatewayIp}
         tripleo::network::midonet::config::neutron_tenant_name: {get_param: MidonetTenant}
-        tripleo::network::midonet::config::port_fixed_ip: {get_param: StaticUplinkVeth1Ip}
+        tripleo::network::midonet::config::port_fixed_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::config::port_interface_name: {get_param: NetworkConfigPortPhysicalName}
         tripleo::network::midonet::config::port_name: {get_param: NetworkConfigPortName}
         tripleo::network::midonet::config::subnet_cidr: {get_param: NetworkConfigFipCidr}
