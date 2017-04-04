@@ -84,10 +84,6 @@ resources:
       ServiceNetMap: {get_param: ServiceNetMap}
       DefaultPasswords: {get_param: DefaultPasswords}
       EndpointMap: {get_param: EndpointMap}
-  NeutronBase:
-    type: ../neutron-api.yaml
-    properties:
-      NeutronPassword: {get_param: NeutronPassword}
 
 outputs:
   role_data:
