@@ -101,5 +101,11 @@ outputs:
             tripleo::network::midonet::gateway::username: 'admin'
             tripleo::network::midonet::gateway::password: {get_param: AdminPassword}
             tripleo::network::midonet::gateway::tenant: 'service'
+            tripleo.midonet_gateway.firewall_rules:
+              '339 midonet_gateway':
+                dport:
+                  - 2606
+                  - 179
+                  - 5001
       step_config: |
         include ::tripleo::network::midonet::gateway

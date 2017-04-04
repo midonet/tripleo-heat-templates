@@ -41,5 +41,6 @@ outputs:
               - 7001
               - 9042
               - 9160
+              - 7199
       step_config: |
         include ::tripleo::network::midonet::nsdb

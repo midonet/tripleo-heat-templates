@@ -98,5 +98,11 @@ outputs:
                 chain: 'FORWARD'
                 proto: 'udp'
                 dport: 8899
+              '314 MidoNet Agent Metadata Proxy':
+                proto: 'tcp'
+                dport: 9697
+              '315 MidoNet Agent JMX monitoring':
+                proto: 'tcp'
+                dport: 7200
       step_config: |
         include ::tripleo::network::midonet::agent

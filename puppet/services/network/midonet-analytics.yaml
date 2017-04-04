@@ -67,5 +67,6 @@ outputs:
                   - 5005
                   - 9300
                   - 9200
+                  - 8888
       step_config: |
         include ::tripleo::network::midonet::insights
