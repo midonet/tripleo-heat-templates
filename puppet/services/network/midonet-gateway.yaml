@@ -72,6 +72,10 @@ parameters:
                  (used to query neutron).
     type: string
     hidden: true
+  NeutronPassword:
+    description: The password for the neutron service and db account, used by neutron agents.
+    type: string
+    hidden: true
 
 resources:
   MidonetBase:
@@ -80,6 +84,10 @@ resources:
       ServiceNetMap: {get_param: ServiceNetMap}
       DefaultPasswords: {get_param: DefaultPasswords}
       EndpointMap: {get_param: EndpointMap}
+  NeutronBase:
+    type: ../neutron-api.yaml
+    properties:
+      NeutronPassword: {get_param: NeutronPassword}
 
 outputs:
   role_data:
@@ -98,8 +106,8 @@ outputs:
             tripleo::network::midonet::gateway::bgp_neighbors_ips: {get_param: BgpUplinkNeighborsIps}
             tripleo::network::midonet::gateway::bgp_neighbors_asns: {get_param: BgpUplinkNeighborsAsns}
             tripleo::network::midonet::gateway::bgp_neighbors_nets: {get_param: BgpUplinkNeighborsNetworks}
-            tripleo::network::midonet::gateway::username: 'admin'
-            tripleo::network::midonet::gateway::password: {get_param: AdminPassword}
+            tripleo::network::midonet::gateway::username: 'neutron'
+            tripleo::network::midonet::gateway::password: {get_param: NeutronPassword}
             tripleo::network::midonet::gateway::tenant: 'service'
             tripleo.midonet_gateway.firewall_rules:
               '339 midonet_gateway':
