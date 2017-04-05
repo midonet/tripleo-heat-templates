@@ -97,19 +97,19 @@ parameters:
                  enabled.
     type: boolean
   MemApiPort:
-    default: ":8181"
+    default: '":8181"'
     description: The port where the MidoNet API is listening.
     type: string
   MemTracePort:
-    default: ":8460"
+    default: '":8460"'
     description: The port where the MidoNet Traces service is listening.
     type: string
   MemSubscriptionPort:
-    default: ":8007"
+    default: '":8007"'
     description: Port where the MidoNet Subscription service is listening.
     type: string
   MemFabricPort:
-    default: ":8009"
+    default: '":8009"'
     description: The port where the MidoNet Fabric service will listen.
     type: string
   MemApiSsl:
@@ -133,7 +133,7 @@ outputs:
       config_settings:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
-          - tripleo::network::midonet::mem::cluster_ip: '"%{hiera(''midonet_cluster_vip'')}"'
+          - tripleo::network::midonet::mem::cluster_ip: '"%{hiera(''public_virtual_ip'')}"'
             tripleo::network::midonet::mem::analytics_ip: '"%{hiera(''midonet_analytics_vip'')}"'
             tripleo::network::midonet::mem::is_ssl: {get_param: MemUseSsl}
             tripleo::network::midonet::mem::mem_api_namespace: {get_param: MemApiNamespace}
