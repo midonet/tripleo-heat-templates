@@ -134,7 +134,7 @@ outputs:
         map_merge:
           - get_attr: [MidonetBase, role_data, config_settings]
           - tripleo::network::midonet::mem::cluster_ip: '"%{hiera(''public_virtual_ip'')}"'
-            tripleo::network::midonet::mem::analytics_ip: '"%{hiera(''midonet_analytics_vip'')}"'
+            tripleo::network::midonet::mem::analytics_ip: '"%{hiera(''public_virtual_ip'')}"'
             tripleo::network::midonet::mem::is_ssl: {get_param: MemUseSsl}
             tripleo::network::midonet::mem::mem_api_namespace: {get_param: MemApiNamespace}
             tripleo::network::midonet::mem::mem_trace_namespace: {get_param: MemTraceNamespace}
