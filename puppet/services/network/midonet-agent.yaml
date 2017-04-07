@@ -64,6 +64,7 @@ outputs:
             tripleo::network::midonet::agent::max_heap_size: {get_param: MidonetAgentMaxHeapSize}
             tripleo::network::midonet::agent::controller_host: '"%{hiera(''nova_metadata_vip'')}"'
             tripleo::network::midonet::agent::cluster_endpoint: {get_param: [EndpointMap, MidonetClusterInternal, uri]}
+            tripleo::network::midonet::agent::underlay_ip_address: {get_param: [ServiceNetMap, MidonetAgentNetwork]}
             tripleo::network::midonet::agent::tenant_name: 'admin'
             tripleo.midonet_agent.firewall_rules:
               '300 MidoNet Agent (Metadata)':
