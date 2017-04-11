@@ -140,7 +140,7 @@ outputs:
             tripleo::network::midonet::cluster::keystone_host: '"%{hiera(\"keystone_public_api_vip\")}"'
             tripleo::network::midonet::cluster::keystone_port: '5000'
             tripleo::network::midonet::cluster::cluster_port: {get_param: MidonetClusterPort}
-            tripleo::network::midonet::cluster::state_proxy_address: '"%{::ipaddress}"'
+            tripleo::network::midonet::cluster::state_proxy_address: {get_param: [ServiceNetMap, MidonetClusterNetwork]}
             tripleo::network::midonet::cluster::state_proxy_port: '2346'
             tripleo::network::midonet::cluster::max_heap_size: {get_param: MidonetClusterMaxHeapSize}
             tripleo::network::midonet::cluster::heap_newsize: {get_param: MidonetClusterHeapNewSize}
