@@ -100,18 +100,6 @@ parameters:
     default: '":8181"'
     description: The port where the MidoNet API is listening.
     type: string
-  MemTracePort:
-    default: '":8460"'
-    description: The port where the MidoNet Traces service is listening.
-    type: string
-  MemSubscriptionPort:
-    default: '":8007"'
-    description: Port where the MidoNet Subscription service is listening.
-    type: string
-  MemFabricPort:
-    default: '":8009"'
-    description: The port where the MidoNet Fabric service will listen.
-    type: string
   MemApiSsl:
     default: false
     description: Enable if the MidoNet API is using SSL.
@@ -153,9 +141,6 @@ outputs:
             tripleo::network::midonet::mem::ssl_key: {get_param: MemSslKey}
             tripleo::network::midonet::mem::insights_ssl: {get_param: MemInsightsSsl}
             tripleo::network::midonet::mem::mem_api_port: {get_param: MemApiPort}
-            tripleo::network::midonet::mem::mem_trace_port: {get_param: MemTracePort}
-            tripleo::network::midonet::mem::mem_subscription_port: {get_param: MemSubscriptionPort}
-            tripleo::network::midonet::mem::mem_fabric_port: {get_param: MemFabricPort}
             tripleo::network::midonet::mem::api_ssl: {get_param: MemApiSsl}
             tripleo::network::midonet::mem::
       step_config: |

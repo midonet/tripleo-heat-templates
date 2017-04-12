@@ -91,6 +91,10 @@ parameters:
   MidonetRelease:
     description: MidoNet release that is being deployed.
     type: string
+  MemInsightsElkClusterName:
+    default: "elasticsearch"
+    description: Name of the ELK cluster.
+    type: string
 
 outputs:
   role_data:
@@ -100,6 +104,7 @@ outputs:
       config_settings:
         tripleo::network::midonet::agent::is_mem: {get_param: MidonetVersion}
         tripleo::network::midonet::analytics::midonet_version: {get_param: MidonetRelease}
+        tripleo::network::midonet::cluster::elk_cluster_name: {get_param: MemInsightsElkClusterName}
         tripleo::network::midonet::cluster::endpoint_port: {get_param: MemInsightsPort}
         tripleo::network::midonet::cluster::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::cluster::keystone_tenant_name: {get_param: MidonetTenant}
@@ -128,7 +133,11 @@ outputs:
         tripleo::network::midonet::gateway::static_veth0_ip: {get_param: NetworkConfigPortPhysicalIp}
         tripleo::network::midonet::gateway::uplink_type: {get_param: UplinkType}
         tripleo::network::midonet::insights::calliope_port: {get_param: MemInsightsPort}
+        tripleo::network::midonet::insights::elk_cluster_name: {get_param: MemInsightsElkClusterName}
         tripleo::network::midonet::insights::midonet_version: {get_param: MidonetRelease}
         tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
-        tripleo::network::midonet::mem::mem_api_version: {get_param: MidonetRelease}
         tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsPort}
+        tripleo::network::midonet::mem::mem_api_version: {get_param: MidonetRelease}
+        tripleo::network::midonet::mem::mem_fabric_port: {get_param: MemInsightsPort}
+        tripleo::network::midonet::mem::mem_subscription_port: {get_param: MemInsightsPort}
+        tripleo::network::midonet::mem::mem_trace_port: {get_param: MemInsightsPort}

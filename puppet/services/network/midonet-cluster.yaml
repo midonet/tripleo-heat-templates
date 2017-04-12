@@ -92,11 +92,6 @@ parameters:
     description: Port that will be bound. Usually you don't want to modify
                  this (see firewall rule below).
     type: string
-  MidonetClusterElkClusterName:
-    default: ""
-    description: (MEM ONLY) Elasticsearch cluster name. Not needed if running a single
-                 ELK node.
-    type: string
   MidonetClusterElkTargetEndpoint:
     default: ""
     description: (MEM ONLY) Target ELK endpoint to be configured.
@@ -156,7 +151,6 @@ outputs:
             tripleo::network::midonet::cluster::elk_seeds: '"%{hiera(\"midonet_analytics_node_ips\")}"'
             tripleo::network::midonet::cluster::cluster_api_address: '"%{hiera(\"midonet_cluster_vip\")}"'
             tripleo::network::midonet::cluster::cluster_api_port: {get_param: MidonetClusterPort}
-            tripleo::network::midonet::cluster::elk_cluster_name: {get_param: MidonetClusterElkClusterName}
             tripleo::network::midonet::cluster::elk_target_endpoint: {get_param: InternalApiNetCidr}
             tripleo::network::midonet::cluster::endpoint_host: {get_param: [ServiceNetMap, MidonetClusterNetwork]}
             tripleo::network::midonet::cluster::flow_history_port: {get_param: MidonetClusterFlowHistoryPort}
