@@ -26,6 +26,10 @@ parameters:
     default: "8099"
     description: 'Port on which Calliope will listen'
     type: string
+  MemInsightsPortWithColon:
+    default: ":8099"
+    description: 'Port on which Calliope will listen (with a colon)'
+    type: string
   MidonetTenant:
     default: "service"
     description: Keystone tenant to be used for authentication
@@ -138,6 +142,6 @@ outputs:
         tripleo::network::midonet::mem::is_insights: {get_param: MemHasInsights}
         tripleo::network::midonet::mem::mem_analytics_port: {get_param: MemInsightsPort}
         tripleo::network::midonet::mem::mem_api_version: {get_param: MidonetRelease}
-        tripleo::network::midonet::mem::mem_fabric_port: {get_param: MemInsightsPort}
-        tripleo::network::midonet::mem::mem_subscription_port: {get_param: MemInsightsPort}
-        tripleo::network::midonet::mem::mem_trace_port: {get_param: MemInsightsPort}
+        tripleo::network::midonet::mem::mem_fabric_port: {get_param: MemInsightsPortWithColon}
+        tripleo::network::midonet::mem::mem_subscription_port: {get_param: MemInsightsPortWithColon}
+        tripleo::network::midonet::mem::mem_trace_port: {get_param: MemInsightsPortWithColon}
