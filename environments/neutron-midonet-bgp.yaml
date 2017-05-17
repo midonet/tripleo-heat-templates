@@ -10,21 +10,34 @@ resource_registry:
   OS::TripleO::Services::ComputeNeutronOvsAgent: OS::Heat::None
 
 parameter_defaults:
-  NeutronCorePlugin: "midonet.neutron.plugin_v2.MidonetPluginV2"
-  NeutronServicePlugins: "midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,lbaasv2,midonet.neutron.services.l3.l3_midonet.MidonetL3ServicePlugin"
-  MidonetClusterPassword: "change_me"
+  NeutronCorePlugin: "midonet_v2_ext"
+  NeutronServicePlugins: "midonet_l3_ext,midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,qos,neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,vpnaas,midonet_logging_resource"
   MidonetVersion: "oss"
+  MidonetRelease: '"5.4"'
   UplinkType: "bgp"
-  NetworkConfigFipCidr: "200.200.200.0/24"
-  NetworkConfigFipGatewayIp: "200.200.200.1"
-  NetworkConfigFipAllocationPools: '["start=200.200.200.20,end=200.200.200.250"]'
-  NetworkConfigPortPhysicalCidr: "10.88.88.0/29"
-  NetworkConfigPortPhysicalIp: "10.88.88.2"
-  NetworkConfigPortPhysicalName: "br-ex"
+  NetworkConfigFipCidr: "10.0.0.0/16"
+  NetworkConfigFipGatewayIp: "10.0.0.1"
+  NetworkConfigFipAllocationPools: '["start=10.0.0.20,end=10.0.255.254"]'
+  NetworkConfigPortPhysicalCidr: "192.168.144.0/24"
+  NetworkConfigPortPhysicalIp: "192.168.144.187"
+  NetworkConfigPortPhysicalName: "eth0"
   StaticUplinkVeth1Ip: "172.19.0.2"
-  MidonetClusterMaxHeapSize: "4096M"
-  MidonetClusterHeapNewSize: "2048M"
-  BgpUplinkNeighborsIps: '["10.88.88.5"]'
-  BgpUplinkNeighborsAsns: '["65535"]'
-  BgpUplinkNeighborsNetworks: '["10.88.88.0/29"]'
-  BgpUplinkAdvertisedNetworks: '["200.200.200.0/24"]'
+  MidonetClusterMaxHeapSize: "256M"
+  MidonetClusterHeapNewSize: "256M"
+  MidonetAgentMaxHeapSize: "256M"
+  BgpUplinkNeighborsIps: '["192.168.144.51"]'
+  BgpUplinkNeighborsAsns: '["65432"]'
+  BgpUplinkNeighborsNetworks: '["192.168.144.51/32"]'
+  BgpUplinkAdvertisedNetworks: '["10.0.0.0/16"]'
+  # Flavors, profiles & roles
+  OvercloudComputeFlavor: "compute"
+  ComputeCount: 2
+  OvercloudControlFlavor: "control"
+  ControllerCount: 3
+  OvercloudMidoGatewayFlavor: "midogateway"
+  MidoGatewayCount: 1
+  OvercloudMidoAnalyticsFlavor: "midoanalytics"
+  MidoAnalytics: 0
+  # Time
+  NtpServer: "es.pool.ntp.org"
+
