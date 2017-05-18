@@ -96,7 +96,6 @@
     - OS::TripleO::Services::FluentdClient
     - OS::TripleO::Services::MidonetAgent
     - OS::TripleO::Services::MidonetCluster
-    - OS::TripleO::Services::MidonetGateway
     - OS::TripleO::Services::MidonetNsdb
     - OS::TripleO::Services::VipHosts
 
@@ -126,6 +125,21 @@
     - OS::TripleO::Services::FluentdClient
     - OS::TripleO::Services::VipHosts
     - OS::TripleO::Services::MidonetAgent
+
+- name: MidoGateway
+  ServicesDefault:
+    - OS::TripleO::Services::CACerts
+    - OS::TripleO::Services::Kernel
+    - OS::TripleO::Services::Ntp
+    - OS::TripleO::Services::Snmp
+    - OS::TripleO::Services::Timezone
+    - OS::TripleO::Services::TripleoPackages
+    - OS::TripleO::Services::TripleoFirewall
+    - OS::TripleO::Services::SensuClient
+    - OS::TripleO::Services::FluentdClient
+    - OS::TripleO::Services::MidonetAgent
+    - OS::TripleO::Services::MidonetGateway
+    - OS::TripleO::Services::VipHosts
 
 - name: BlockStorage
   ServicesDefault:
