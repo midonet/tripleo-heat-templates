@@ -21,7 +21,6 @@ parameter_defaults:
   NetworkConfigPortPhysicalCidr: "192.168.144.0/24"
   NetworkConfigPortPhysicalIp: "192.168.144.187"
   NetworkConfigPortPhysicalName: "eth0"
-  StaticUplinkVeth1Ip: "172.19.0.2"
   MidonetClusterMaxHeapSize: "256M"
   MidonetClusterHeapNewSize: "256M"
   MidonetAgentMaxHeapSize: "256M"

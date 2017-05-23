@@ -23,5 +23,17 @@ parameter_defaults:
   NetworkConfigPortPhysicalIp: "172.19.0.1"
   NetworkConfigPortPhysicalName: "veth1"
   StaticUplinkVeth1Ip: "172.19.0.2"
-  MidonetClusterMaxHeapSize: "4096M"
-  MidonetClusterHeapNewSize: "2048M"
+  MidonetClusterMaxHeapSize: "256M"
+  MidonetClusterHeapNewSize: "256M"
+  MidonetAgentMaxHeapSize: "256M"
+  # Flavors, profiles & roles
+  OvercloudComputeFlavor: "compute"
+  ComputeCount: 2
+  OvercloudControlFlavor: "control"
+  ControllerCount: 3
+  OvercloudMidoGatewayFlavor: "midogateway"
+  MidoGatewayCount: 1
+  OvercloudMidoAnalyticsFlavor: "midoanalytics"
+  MidoAnalytics: 0
+  # Time
+  NtpServer: "es.pool.ntp.org"
