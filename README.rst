@@ -2,7 +2,7 @@
 tripleo-heat-templates
 ======================
 
-Heat templates to deploy OpenStack using OpenStack.
+Heat templates to deploy OpenStack with MidoNet using OpenStack.
 
 * Free software: Apache license
 * Documentation: http://docs.openstack.org/developer/tripleo-docs
