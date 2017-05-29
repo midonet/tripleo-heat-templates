@@ -37,7 +37,7 @@ parameter_defaults:
   OvercloudMidoGatewayFlavor: "midogateway"
   MidoGatewayCount: 1
   OvercloudMidoAnalyticsFlavor: "midoanalytics"
-  MidoAnalytics: 1
+  MidoAnalyticsCount: 1
   # Time
   NtpServer: "es.pool.ntp.org"
 
