@@ -1,0 +1,43 @@
+# A Heat environment that can be used to deploy MidoNet Services
+resource_registry:
+  # Override default Neutron core plugin
+  OS::TripleO::Services::NeutronCorePlugin: OS::TripleO::Services::MidonetConfig
+  # MidoNet does not require any of the following agents
+  OS::TripleO::Services::NeutronDhcpAgent: OS::Heat::None
+  OS::TripleO::Services::NeutronL3Agent: OS::Heat::None
+  OS::TripleO::Services::NeutronMetadataAgent: OS::Heat::None
+  OS::TripleO::Services::NeutronOvsAgent: OS::Heat::None
+  OS::TripleO::Services::ComputeNeutronOvsAgent: OS::Heat::None
+
+parameter_defaults:
+  NeutronCorePlugin: "midonet_v2_ext"
+  NeutronServicePlugins: "midonet_l3_ext,midonet.neutron.services.firewall.plugin.MidonetFirewallPlugin,qos,neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,vpnaas,midonet_logging_resource"
+  MidonetVersion: "mem"
+  MemHasInsights: true
+  MidonetRelease: '"5.4"'
+  UplinkType: "bgp"
+  NetworkConfigFipCidr: "10.0.0.0/16"
+  NetworkConfigFipGatewayIp: "10.0.0.1"
+  NetworkConfigFipAllocationPools: '["start=10.0.0.20,end=10.0.255.254"]'
+  NetworkConfigPortPhysicalCidr: "192.168.144.0/24"
+  NetworkConfigPortPhysicalIp: "192.168.144.187"
+  NetworkConfigPortPhysicalName: "eth0"
+  MidonetClusterMaxHeapSize: "256M"
+  MidonetClusterHeapNewSize: "256M"
+  MidonetAgentMaxHeapSize: "256M"
+  BgpUplinkNeighborsIps: '["192.168.144.51"]'
+  BgpUplinkNeighborsAsns: '["65432"]'
+  BgpUplinkNeighborsNetworks: '["192.168.144.51/32"]'
+  BgpUplinkAdvertisedNetworks: '["10.0.0.0/16"]'
+  # Flavors, profiles & roles
+  OvercloudComputeFlavor: "compute"
+  ComputeCount: 2
+  OvercloudControlFlavor: "control"
+  ControllerCount: 3
+  OvercloudMidoGatewayFlavor: "midogateway"
+  MidoGatewayCount: 1
+  OvercloudMidoAnalyticsFlavor: "midoanalytics"
+  MidoAnalytics: 1
+  # Time
+  NtpServer: "es.pool.ntp.org"
+
